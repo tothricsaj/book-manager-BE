@@ -1,8 +1,9 @@
 const path = require('path')
 
 const express = require('express')
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
 const bodyParser = require('body-parser')
-// const morgan = require('morgan') // due to logging requestes
 const sequelize = require('./util/database')
 const User = require('./model/User')
 
@@ -11,9 +12,8 @@ const app = express()
 app.set('view engine', 'ejs')
 app.set('views', 'views')
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')))
-// app.use(morgan('combined'))
 
 app.use((req, res, next) => {
   User.findByPk(1)
@@ -25,6 +25,25 @@ app.use((req, res, next) => {
 })
 
 const storeRoutes = require('./routes/bookStore')
+
+const schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
+
+const root = {
+  hello: () => {
+    return 'Hello world!';
+  },
+};
+
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
+
 
 app.use(storeRoutes)
 
