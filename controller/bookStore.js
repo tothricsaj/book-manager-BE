@@ -2,8 +2,6 @@ const Book = require('../model/Books')
 const User = require('../model/User')
 const Favorites = require('../model/Favorites')
 
-// TODO(tothricsaj): give the renderPage method to all render method
-
 const renderPage = (fn, path, params) => {
   User.findByPk(1)
     .then(user => {
