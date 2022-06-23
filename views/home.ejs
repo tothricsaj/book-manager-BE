@@ -1,0 +1,35 @@
+<%- include('./includes/head.ejs') %>
+
+</head>
+<body>
+  <%- include('./includes/navigation.ejs') %>
+
+  <div class="content-wrapper">
+    <% if(books.length > 0) { %>
+      <% for(let book of books) {%>
+        <article class="book-wrapper">
+          <img class="book-wrapper__cover" src="<%= book.coverImageUrl %>" alt="No img">
+          <h3 class="book-wrapper__author"><%= book.author %></h3>
+          <h3 class="book-wrapper__title"><%= book.title %></h3>
+          <p><b>Year of public:</b> <%= book.pubYear %></p>
+          <div>
+            <% if(!book.favorite) { %>
+            <form action="/add-favorite" method="POST">
+              <input type="hidden" name="bookId" value="<%= book.id %>">
+              <a class="button" href="#" onclick="this.parentNode.submit()">Add to favorite</a>
+            </form>
+            <% } %>
+            <a class="button" href="/edit-book/<%= book.id%>">Change</a>
+          </div>
+          <form action="/delete-book" method="POST">
+              <input type="hidden" name="bookId" value="<%= book.id %>">
+              <a class="button button__delete" href="#" onclick="this.parentNode.submit()">Delete</a>
+          </form>
+        </article>
+      <% } %>
+    <% } else { %>
+      <h2>No stored books!</h2>
+    <% } %>
+  </div>
+</body>
+</html>

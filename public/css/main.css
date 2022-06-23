@@ -1,0 +1,44 @@
+:root {
+  --rich-black: #003D3B;
+  --morning-blue: #829988;
+  --tea-green: #D5EDB2;
+  --copper: #B87A25;
+  --spanish-bistre: #7D7432;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.content-wrapper {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button {
+  margin: 15px 0;
+  padding: 5px;
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--rich-black);
+  color: var(--tea-green);
+  cursor: pointer;
+}
+
+.button__delete {
+  background-color: red;
+}
