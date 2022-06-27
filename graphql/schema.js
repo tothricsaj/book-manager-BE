@@ -14,12 +14,25 @@ module.exports = buildSchema(`
 		converImage: String
 	}
 
-	type Root {
+	input bookInputData {
+		title: String
+		author: String
+		pubYear: Int
+		genre: String
+		coverImageUrl: String
+	}
+
+	type RootQuery {
 		hello: Hello
 		books: [Book]
 	}
 
+	type RootMutation {
+		createBook(bookInput: bookInputData): Book!
+	}
+
 	schema {
-		query: Root
+		query: RootQuery
+		mutation: RootMutation
 	}
 `);
