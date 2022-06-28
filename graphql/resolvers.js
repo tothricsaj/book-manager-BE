@@ -10,7 +10,6 @@ module.exports = {
 		return books.map(book => book['dataValues']);
 	},
 	getBooksByTitle: async ({title}) => {
-		// console.log('title -> ', title);
 		try {
 			const books = await Book.findAll({
 				where: {
@@ -19,8 +18,6 @@ module.exports = {
 					}
 				}
 			});
-
-			console.log('books -> ', books);
 
 			return books;
 
