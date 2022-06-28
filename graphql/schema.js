@@ -25,6 +25,7 @@ module.exports = buildSchema(`
 	type RootQuery {
 		hello: Hello
 		books: [Book]
+		getBooksByTitle(title: String): [Book]
 	}
 
 	type RootMutation {

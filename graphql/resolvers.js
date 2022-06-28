@@ -1,3 +1,4 @@
+const {Op} = require('sequelize');
 const Book = require('../model/Books');
 
 module.exports = {
@@ -7,6 +8,26 @@ module.exports = {
 	books: async () => {
 		const books = await Book.findAll();
 		return books.map(book => book['dataValues']);
+	},
+	getBooksByTitle: async ({title}) => {
+		// console.log('title -> ', title);
+		try {
+			const books = await Book.findAll({
+				where: {
+					title: {
+						[Op.eq]: title
+					}
+				}
+			});
+
+			console.log('books -> ', books);
+
+			return books;
+
+		} catch(e) {
+			console.log(e);
+		}
+		
 	},
 	createBook: async ({bookInput}) => {
 		const addedBook = await Book.create({
