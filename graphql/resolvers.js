@@ -2,13 +2,11 @@ const {Op} = require('sequelize');
 const Book = require('../model/Books');
 
 module.exports = {
-	hello: () => {
-			return 'Hello world!';
-	},
 	books: async () => {
 		const books = await Book.findAll();
 		return books.map(book => book['dataValues']);
 	},
+
 	getBooksByTitle: async ({title}) => {
 		try {
 			const books = await Book.findAll({
@@ -21,11 +19,12 @@ module.exports = {
 
 			return books;
 
-		} catch(e) {
-			console.log(e);
+		} catch(error) {
+			throw new Error(error);
 		}
 		
 	},
+
 	complexBookSearch: async ({params}) => {
 		try {
 			const {title, author, pubYear, genre} = params;
@@ -48,10 +47,10 @@ module.exports = {
 			return books;
 
 		} catch (error) {
-			console.log(error);
 			throw new  Error(error);
 		}
 	},
+
 	createBook: async ({bookInput}) => {
 		const addedBook = await Book.create({
 			author: bookInput.author,
