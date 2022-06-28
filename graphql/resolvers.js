@@ -14,7 +14,7 @@ module.exports = {
 			title: bookInput.title,
 			genre: bookInput.genre,
 			pubYear: bookInput.pubYear,
-			coverImageURL: bookInput.coverImageURL
+			coverImageUrl: bookInput.coverImageUrl
 		})
 
 		return addedBook;
