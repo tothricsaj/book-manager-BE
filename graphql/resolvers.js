@@ -61,6 +61,27 @@ module.exports = {
 		})
 
 		return addedBook;
+	},
+
+	updateBook: async ({updateBook}) => {
+		const {bookId, title, author, pubYear, genre} = updateBook;
+		const updateProperties = {
+			...(title) ? {title: title}:null,
+			...(author) ? {author: author}:null,
+			...(pubYear) ? {pubYear: pubYear}:null,
+			...(genre) ? {genre: genre}:null
+		};
+
+		const updatedBook = await Book.update(
+			updateProperties,
+			{
+				where: {id: bookId}
+			}
+		);
+
+		console.log('updatedBook -> ', updatedBook);
+
+		return updatedBook;
 	}
 
 } 

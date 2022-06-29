@@ -1,5 +1,12 @@
 const { buildSchema } = require('graphql');
 
+const bookProperties = `
+	title: String
+	author: String
+	pubYear: Int
+	genre: String	
+`;
+
 module.exports = buildSchema(`
   type Hello {
     hello: String
@@ -23,10 +30,12 @@ module.exports = buildSchema(`
 	}
 
 	input queryParamInput {
-		title: String
-		author: String
-		pubYear: Int
-		genre: String	
+		${bookProperties}
+	}
+
+	input updateBookInput {
+		bookId: ID!
+		${bookProperties}
 	}
 
 	type RootQuery {
@@ -38,6 +47,7 @@ module.exports = buildSchema(`
 
 	type RootMutation {
 		createBook(bookInput: bookInputData): Book!
+		updateBook(updateBook: updateBookInput): [Book]
 	}
 
 	schema {
