@@ -36,9 +36,6 @@ module.exports = {
 				...(genre) ? {genre: {[Op.substring]: genre}} : null
 			};
 
-			console.log('params -> ', params);
-
-			console.log('queryObject -> ', queryObject);
 			const books = await Book.findAll({
 				where: {
 					[Op.and]: queryObject
