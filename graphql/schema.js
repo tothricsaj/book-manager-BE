@@ -1,12 +1,14 @@
 const { buildSchema } = require('graphql');
 
 const bookProperties = `
+	id: ID!
 	title: String
 	author: String
 	pubYear: Int
 	genre: String	
 `;
 
+// TODO(tothricsaj): refactor the inputs
 module.exports = buildSchema(`
   type Hello {
     hello: String
@@ -29,12 +31,12 @@ module.exports = buildSchema(`
 		coverImageUrl: String
 	}
 
+
 	input queryParamInput {
 		${bookProperties}
 	}
 
 	input updateBookInput {
-		bookId: ID!
 		${bookProperties}
 	}
 

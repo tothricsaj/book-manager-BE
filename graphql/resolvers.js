@@ -27,8 +27,9 @@ module.exports = {
 
 	complexBookSearch: async ({params}) => {
 		try {
-			const {title, author, pubYear, genre} = params;
+			const {id, title, author, pubYear, genre} = params;
 			const queryObject = {
+				...(id) ? {id: {[Op.substring]: id}} : null,
 				...(title) ? {title: {[Op.substring]: title}} : null,
 				...(author) ? {author: {[Op.substring]: author}} : null,
 				...(pubYear) ? {pubYear: {[Op.eq]: pubYear}} : null,
