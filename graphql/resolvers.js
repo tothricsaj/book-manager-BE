@@ -62,7 +62,7 @@ module.exports = {
 	},
 
 	updateBook: async ({updateBook}) => {
-		const {bookId, title, author, pubYear, genre} = updateBook;
+		const {id, title, author, pubYear, genre} = updateBook;
 		const updateProperties = {
 			...(title) ? {title: title}:null,
 			...(author) ? {author: author}:null,
@@ -73,7 +73,7 @@ module.exports = {
 		const updatedBook = await Book.update(
 			updateProperties,
 			{
-				where: {id: bookId}
+				where: {id: id}
 			}
 		);
 

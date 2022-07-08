@@ -49,7 +49,7 @@ module.exports = buildSchema(`
 
 	type RootMutation {
 		createBook(bookInput: bookInputData): Book!
-		updateBook(updateBook: updateBookInput): [Book]
+		updateBook(updateBook: updateBookInput): [Int]
 	}
 
 	schema {
