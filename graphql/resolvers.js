@@ -77,8 +77,6 @@ module.exports = {
 			}
 		);
 
-		console.log('updatedBook -> ', updatedBook);
-
 		return updatedBook;
 	}
 
